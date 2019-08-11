@@ -1,20 +1,18 @@
-package ru.qa.pft.addressbook;
+package ru.qa.pft.addressbook.app;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.qa.pft.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest {
+public class ApplicationManager {
   public WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     Login("admin", "secret");
@@ -29,19 +27,19 @@ public class BaseTest {
     wd.findElement(By.id("LoginForm")).submit();
   }
 
-  protected void logout(String logout) {
+  public void logout(String logout) {
     wd.findElement(By.linkText(logout)).click();
   }
 
-  protected void returmGroupPage(String s) {
+  public void returmGroupPage(String s) {
     wd.findElement(By.linkText(s)).click();
   }
 
-  protected void submitGrouCreation(String submit) {
+  public void submitGrouCreation(String submit) {
     wd.findElement(By.name(submit)).click();
   }
 
-  protected void fillGroupForm(GroupData groupData) {
+  public void fillGroupForm(GroupData groupData) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -51,16 +49,15 @@ public class BaseTest {
     wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
   }
 
-  protected void initGroupCreation(String s) {
+  public void initGroupCreation(String s) {
     wd.findElement(By.name(s)).click();
   }
 
-  protected void gotoGroupPage(String groups) {
+  public void gotoGroupPage(String groups) {
     wd.findElement(By.linkText(groups)).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
   }
 

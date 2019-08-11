@@ -1,25 +1,24 @@
-package ru.qa.pft.addressbook;
+package ru.qa.pft.addressbook.test;
 
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 
 public class GroupDeleteTest extends BaseTest {
 
   @Test
   public void testGroupDelete() throws Exception {
-    gotoGroupPage("groups");
+    app.gotoGroupPage("groups");
     selectGroup("selected[]");
     DeleteSelectionGroup("delete");
-    returmGroupPage("group page");
-    logout("Logout");
+    app.returmGroupPage("group page");
+    app.logout("Logout");
   }
 
   public void DeleteSelectionGroup(String delete) {
-    wd.findElement(By.name(delete)).click();
+    app.wd.findElement(By.name(delete)).click();
   }
 
   public void selectGroup(String s) {
-    wd.findElement(By.name(s)).click();
+    app.wd.findElement(By.name(s)).click();
   }
 }

@@ -3,7 +3,6 @@ package ru.qa.pft.addressbook.test;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.qa.pft.addressbook.model.GroupDataContact;
 
 public class CreatedNewContact {
   private WebDriver wd;
@@ -20,23 +19,23 @@ public class CreatedNewContact {
     wd.findElement(By.name("user")).sendKeys(name);
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys( password);
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
+    wd.findElement(By.id("LoginForm")).submit();
   }
 
   @Test
   public void testAddContact() throws Exception {
-    gotoContactpage("add new");
+    gotoContactpage();
     fillDataForm(new GroupDataContact("LILIYA", "IKSANOVA", "limma", "Moscow", "limma@yandex.ru"));
     SubmitCreateContact();
-    logout("Logout");
+    logout();
   }
 
-  private void logout(String logout) {
-    wd.findElement(By.linkText(logout)).click();
+  private void logout() {
+    wd.findElement(By.linkText("Logout")).click();
   }
 
   public void SubmitCreateContact() {
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
   public void fillDataForm(GroupDataContact groupDataContact) {
@@ -57,8 +56,8 @@ public class CreatedNewContact {
     wd.findElement(By.name("email")).sendKeys(groupDataContact.getEmail());
   }
 
-  public void gotoContactpage(String s) {
-    wd.findElement(By.linkText(s)).click();
+  public void gotoContactpage() {
+    wd.findElement(By.linkText("add new")).click();
   }
 
   @AfterMethod(alwaysRun = true)

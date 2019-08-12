@@ -5,6 +5,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.internal.GroupsHelper;
 import ru.qa.pft.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
@@ -53,6 +54,10 @@ public class ApplicationManager {
     wd.findElement(By.name(s)).click();
   }
 
+  /***
+   * Переход на страницу групп пейдж
+   * @param groups
+   */
   public void gotoGroupPage(String groups) {
     wd.findElement(By.linkText(groups)).click();
   }

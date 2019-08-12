@@ -1,4 +1,4 @@
-package ru.qa.pft.addressbook.model;
+package ru.qa.pft.addressbook.test;
 
 public class GroupDataContact {
   private final String name;

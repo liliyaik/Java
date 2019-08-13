@@ -1,17 +1,16 @@
 package ru.qa.pft.addressbook.app;
 
+import org.omg.CORBA.ValueBaseHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.qa.pft.addressbook.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
-public class GroupHelper {
-  public FirefoxDriver wd;
+public class GroupHelper extends BaseHelper {
 
   public GroupHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void init() {
@@ -22,32 +21,26 @@ public class GroupHelper {
 
   private void Login(String username, String password) {
     wd.get("http://localhost/addressbook/");
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
+    type(By.name("user"), username);
+    type(By.name("user"), password);
     wd.findElement(By.id("LoginForm")).submit();
   }
 
   public void returmGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
+    click(By.linkText("group page"));
   }
 
   public void submitGrouCreation() {
-    wd.findElement(By.name("submit")).click();
+    click(By.name("submit"));
   }
 
   public void fillGroupForm(GroupData groupData) {
-    wd.findElement(By.name("group_name")).click();
-    wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    type(By.name("group_name"), groupData.getName());
+    type(By.name("group_header"), groupData.getName());
+    type(By.name("group_footer"), groupData.getName());
   }
 
   public void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 }

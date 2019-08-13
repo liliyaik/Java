@@ -3,13 +3,11 @@ package ru.qa.pft.addressbook.app;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NavigationHelper {
+public class NavigationHelper extends BaseHelper {
 
-
-  private FirefoxDriver wd;
 
   public NavigationHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   /***
@@ -17,6 +15,6 @@ public class NavigationHelper {
    *
    */
   public void gotoGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
+    click(By.linkText("groups"));
   }
 }

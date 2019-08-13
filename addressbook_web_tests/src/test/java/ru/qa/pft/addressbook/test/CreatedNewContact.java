@@ -3,6 +3,7 @@ package ru.qa.pft.addressbook.test;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.qa.pft.addressbook.model.GroupDataContact;
 
 public class CreatedNewContact {
   private WebDriver wd;

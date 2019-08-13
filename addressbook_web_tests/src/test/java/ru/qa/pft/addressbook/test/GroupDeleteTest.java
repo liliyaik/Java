@@ -7,18 +7,18 @@ public class GroupDeleteTest extends BaseTest {
 
   @Test
   public void testGroupDelete() throws Exception {
-    app.gotoGroupPage("groups");
-    selectGroup("selected[]");
-    DeleteSelectionGroup("delete");
-    app.returmGroupPage("group page");
-    app.logout("Logout");
+    app.gotoGroupPage();
+    selectGroup();
+    DeleteSelectionGroup();
+    app.getGroupHelper().returmGroupPage();
+    app.logout();
   }
 
-  public void DeleteSelectionGroup(String delete) {
-    app.wd.findElement(By.name(delete)).click();
+  public void DeleteSelectionGroup() {
+    app.getGroupHelper().wd.findElement(By.name("delete")).click();
   }
 
-  public void selectGroup(String s) {
-    app.wd.findElement(By.name(s)).click();
+  public void selectGroup() {
+    app.getGroupHelper().wd.findElement(By.name("selected[]")).click();
   }
 }

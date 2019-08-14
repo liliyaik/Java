@@ -12,6 +12,7 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
+  public ContactHelper contactHelper;
 
   public void init() {
     wd = new FirefoxDriver();
@@ -19,7 +20,8 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
-    sessionHelper.Login("admin", "secret");
+    contactHelper = new ContactHelper(wd);
+    contactHelper.Login("admin", "secret");
   }
 
   public void logout() {

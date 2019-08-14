@@ -22,7 +22,7 @@ public class GroupHelper extends BaseHelper {
   private void Login(String username, String password) {
     wd.get("http://localhost/addressbook/");
     type(By.name("user"), username);
-    type(By.name("user"), password);
+    type(By.name("pass"), password);
     wd.findElement(By.id("LoginForm")).submit();
   }
 

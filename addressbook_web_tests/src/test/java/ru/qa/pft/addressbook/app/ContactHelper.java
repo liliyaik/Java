@@ -13,12 +13,24 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
+  public void gotoContactEdit() {
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='limma@yandex.ru'])[1]/following::img[2]"));
+  }
+
   public void logout() {
     click(By.linkText("Logout"));
   }
 
   public void SubmitCreateContact() {
     click(By.xpath("(//input[@name='submit'])[2]"));
+  }
+
+  public void SubmitEditContact() {
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
+  }
+
+  public void SubmitDeleteContact() {
+    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[3]"));
   }
 
   public void Login(String username, String password) {

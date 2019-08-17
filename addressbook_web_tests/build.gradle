@@ -2,5 +2,5 @@ apply plugin: 'java'
 repositories{mavenCentral()}
 dependencies{
     implementation 'org.testng:testng:7.0.0-beta7'
-    implementation 'org.seleniumhq.selenium:selenium-java:2.48.2'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
             }

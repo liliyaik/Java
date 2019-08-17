@@ -2,6 +2,7 @@ package ru.qa.pft.addressbook.app;
 
 import org.omg.CORBA.ValueBaseHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.qa.pft.addressbook.model.GroupData;
 
@@ -9,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GroupHelper extends BaseHelper {
 
-  public GroupHelper(FirefoxDriver wd) {
+  public GroupHelper(WebDriver wd) {
     super(wd);
   }
 

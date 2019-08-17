@@ -4,6 +4,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.qa.pft.addressbook.model.GroupDataContact;
+import org.openqa.selenium.WebDriver;
 
 public class CreatedNewContact extends BaseTest {
 

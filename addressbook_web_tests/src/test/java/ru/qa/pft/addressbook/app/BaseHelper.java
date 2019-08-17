@@ -1,13 +1,14 @@
 package ru.qa.pft.addressbook.app;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BaseHelper {
 
-  public FirefoxDriver wd;
+  public WebDriver wd;
 
-  public BaseHelper(FirefoxDriver wd) {
+  public BaseHelper(WebDriver wd) {
     this.wd = wd;
   }
 

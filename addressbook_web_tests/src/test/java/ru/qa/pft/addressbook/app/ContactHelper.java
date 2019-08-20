@@ -15,7 +15,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void gotoContactEdit() {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='limma@yandex.ru'])[1]/following::img[2]"));
+    click(By.xpath("(//img[@alt='Edit'])[1]"));
   }
 
   public void logout() {
@@ -27,11 +27,11 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void SubmitEditContact() {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
+    click(By.xpath("(//input[@name='update'])[2]"));
   }
 
   public void SubmitDeleteContact() {
-    click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[3]"));
+    click(By.xpath("(//input[@name='update'])[3]"));
   }
 
   public void Login(String username, String password) {

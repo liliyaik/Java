@@ -11,7 +11,7 @@ public class CreatedNewContact extends BaseTest {
   @Test
   public void testAddContact() throws Exception {
     app.contactHelper.gotoContactpage();
-    app.contactHelper.fillDataForm(new GroupDataContact("LILIYA", "IKSANOVA", "limma", "Moscow", "limma@yandex.ru"));
+    app.contactHelper.fillDataForm(new GroupDataContact("LILIYA", "IKSANOVA", "limma", "Moscow", "limma@yandex.ru", "test1"),true);
     app.contactHelper.SubmitCreateContact();
     app.logout();
   }

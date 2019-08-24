@@ -4,8 +4,10 @@ import org.omg.CORBA.ValueBaseHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.GroupData;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class GroupHelper extends BaseHelper {
@@ -39,6 +41,7 @@ public class GroupHelper extends BaseHelper {
     type(By.name("group_name"), groupData.getName());
     type(By.name("group_header"), groupData.getName());
     type(By.name("group_footer"), groupData.getName());
+
   }
 
   public void initGroupCreation() {

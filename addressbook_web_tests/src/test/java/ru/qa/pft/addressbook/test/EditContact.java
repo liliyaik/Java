@@ -10,7 +10,7 @@ public class EditContact extends BaseTest {
   @Test
   public void testEditContact() throws Exception {
     app.contactHelper.gotoContactEdit();
-    app.contactHelper.fillDataForm(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru"));
+    app.contactHelper.fillDataForm(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null),false);
     app.contactHelper.SubmitEditContact();
     app.logout();
   }

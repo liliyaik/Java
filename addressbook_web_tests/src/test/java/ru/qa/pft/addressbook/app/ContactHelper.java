@@ -3,6 +3,8 @@ package ru.qa.pft.addressbook.app;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
 public class ContactHelper extends BaseHelper {
@@ -41,11 +43,21 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.id("LoginForm")).submit();
   }
 
-  public void fillDataForm(GroupDataContact groupDataContact) {
+  public void fillDataForm(GroupDataContact groupDataContact, boolean creator) {
     type(By.name("firstname"), groupDataContact.getName());
     type(By.name("middlename"), groupDataContact.getFio());
     type(By.name("nickname"), groupDataContact.getNik());
     type(By.name("address"), groupDataContact.getCity());
     type(By.name("email"), groupDataContact.getEmail());
+
+    if (creator)
+    {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContact.getGroup());
+    }
+    else {
+      Assert.assertFalse(isElementPresent (By.name("new_group")));
+    }
+
+    }
   }
-}
+

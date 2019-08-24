@@ -10,7 +10,7 @@ import ru.qa.pft.addressbook.model.GroupData;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-public class GroupHelper extends BaseHelper {
+public class GroupHelper<group> extends BaseHelper {
 
   public GroupHelper(WebDriver wd) {
     super(wd);
@@ -63,5 +63,16 @@ public class GroupHelper extends BaseHelper {
 
   public void submitGroupModification() {
     click(By.name("update"));
+  }
+
+  public void creatorGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGrouCreation();
+    returmGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

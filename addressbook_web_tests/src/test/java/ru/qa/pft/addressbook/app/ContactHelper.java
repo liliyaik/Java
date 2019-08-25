@@ -50,14 +50,23 @@ public class ContactHelper extends BaseHelper {
     type(By.name("address"), groupDataContact.getCity());
     type(By.name("email"), groupDataContact.getEmail());
 
-    if (creator)
-    {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContact.getGroup());
-    }
-    else {
-      Assert.assertFalse(isElementPresent (By.name("new_group")));
-    }
+//    if (creator)
+//    {
+//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContact.getGroup());
+//    }
+//    else {
+//      Assert.assertFalse(isElementPresent (By.name("new_group")));
+//    }
 
     }
+
+  public void creatorNewContact(GroupDataContact groupDataContact, boolean b) {
+    gotoContactpage();
+    fillDataForm(groupDataContact,true);
+    SubmitCreateContact();
   }
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
+  }
+}
 

@@ -10,9 +10,8 @@ public class CreatedNewContact extends BaseTest {
 
   @Test
   public void testAddContact() throws Exception {
-    app.contactHelper.gotoContactpage();
-    app.contactHelper.fillDataForm(new GroupDataContact("LILIYA", "IKSANOVA", "limma", "Moscow", "limma@yandex.ru", "test1"),true);
-    app.contactHelper.SubmitCreateContact();
+    app.contactHelper.creatorNewContact(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null),false);
+    app.getNavigationHelper().gotoHomePage();
     app.logout();
   }
 

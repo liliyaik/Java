@@ -75,4 +75,8 @@ public class GroupHelper<group> extends BaseHelper {
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
+
+  public int getGroupSize() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }

@@ -6,10 +6,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
-public class EditContact extends BaseTest {
+public class ModificationContactTest extends BaseTest {
 
   @Test
-  public void testEditContact() throws Exception {
+  public void testModificationContact() throws Exception {
     if (! app.contactHelper.isThereAGroup())
     {
       app.contactHelper.creatorNewContact(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null),false);

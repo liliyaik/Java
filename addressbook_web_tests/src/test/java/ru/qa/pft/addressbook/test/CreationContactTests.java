@@ -6,10 +6,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 import org.openqa.selenium.WebDriver;
 
-public class CreatedNewContact extends BaseTest {
+public class CreationContactTests extends BaseTest {
 
   @Test
-  public void testAddContact() throws Exception {
+  public void testCreationContact() throws Exception {
     app.contactHelper.creatorNewContact(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null),false);
     app.getNavigationHelper().gotoHomePage();
     app.logout();

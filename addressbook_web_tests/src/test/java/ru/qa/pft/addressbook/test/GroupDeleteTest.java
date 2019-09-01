@@ -15,7 +15,7 @@ public class GroupDeleteTest extends BaseTest {
     {
       app.getGroupHelper().creatorGroup(new GroupData("test_name", "test_surname", "test3", "test1"));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(before);
     app.getGroupHelper().DeleteSelectionGroup();
     app.getGroupHelper().returmGroupPage();
     int after = app.getGroupHelper().getGroupSize();

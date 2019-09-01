@@ -22,7 +22,10 @@ public class GroupDeleteTest extends BaseTest {
     app.getGroupHelper().returmGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size() - 1);
-    app.logout();
+
+    before.remove(before.size() - 1);
+    Assert.assertEquals(before, after);
+    //app.logout();
   }
 
 }

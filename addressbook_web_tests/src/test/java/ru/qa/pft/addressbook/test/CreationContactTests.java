@@ -14,7 +14,9 @@ public class CreationContactTests extends BaseTest {
     app.contactHelper.creatorNewContact(new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null),false);
     app.getNavigationHelper().gotoGroupPage();
     app.getNavigationHelper().gotoHomePage();
-    app.logout();
+    //app.logout();
+
+
   }
 
 }

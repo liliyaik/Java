@@ -1,6 +1,9 @@
 package ru.qa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class GroupDataContact {
+  public int id;
   private final String name;
   private final String fio;
   private final String nik;
@@ -8,7 +11,22 @@ public class GroupDataContact {
   private final String email;
   private String group;
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupDataContact contact = (GroupDataContact) o;
+    return Objects.equals(name, contact.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
+
   public GroupDataContact(String name, String fio, String nik, String city, String email, String group) {
+    this.id =  Integer.MAX_VALUE;
     this.name = name;
     this.fio = fio;
     this.nik = nik;
@@ -37,7 +55,21 @@ public class GroupDataContact {
     return email;
   }
 
-  public String getGroup() {
-    return group;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "GroupDataContact{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
+
+
+  public int getId() {
+    return id;
   }
 }

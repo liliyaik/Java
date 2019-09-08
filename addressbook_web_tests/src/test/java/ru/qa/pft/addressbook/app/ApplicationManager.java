@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import ru.qa.pft.addressbook.model.GroupDataContact;
 
 
 import java.util.concurrent.TimeUnit;
@@ -59,6 +60,9 @@ public class ApplicationManager {
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
+  public ContactHelper getContactHelper() {
+    return contactHelper;
+  }
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
@@ -67,4 +71,5 @@ public class ApplicationManager {
   public void gotoGroupPage() {
     navigationHelper.gotoGroupPage();
   }
+
 }

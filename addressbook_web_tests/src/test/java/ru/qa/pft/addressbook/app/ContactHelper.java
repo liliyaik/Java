@@ -2,10 +2,15 @@ package ru.qa.pft.addressbook.app;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.GroupDataContact;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends BaseHelper {
   public ContactHelper(WebDriver wd) {
@@ -60,13 +65,32 @@ public class ContactHelper extends BaseHelper {
 
     }
 
-  public void creatorNewContact(GroupDataContact groupDataContact, boolean b) {
+  public void creatorNewContact(GroupDataContact groupDataContact) {
     gotoContactpage();
     fillDataForm(groupDataContact,true);
     SubmitCreateContact();
   }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public List<GroupDataContact> getContactList() {
+    List<GroupDataContact> groups = new ArrayList<GroupDataContact>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      //TODO:
+//      String fio = "";
+//      String nik = "";
+//      String city = "";
+//      String email = "";
+//      String group = "";
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupDataContact contact = new GroupDataContact(name, null, null, null, null, null);
+      groups.add(contact);
+    }
+    return groups;
+
   }
 }
 

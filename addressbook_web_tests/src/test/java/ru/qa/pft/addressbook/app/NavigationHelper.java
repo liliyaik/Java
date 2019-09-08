@@ -32,6 +32,16 @@ public class NavigationHelper extends BaseHelper {
     {
       return;
     }
-    click(By.linkText("home"));
+    click(By.linkText("home page"));
   }
+  public void gotoContactPage() {
+    if (isElementPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+            && isElementPresent(By.name("new")))
+    {
+      return;
+    }
+    click(By.linkText("add new"));
+  }
+
 }

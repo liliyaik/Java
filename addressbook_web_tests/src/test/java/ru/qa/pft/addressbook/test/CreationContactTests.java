@@ -17,7 +17,7 @@ public class CreationContactTests extends BaseTest {
   public void testCreationContact() throws Exception {
     app.getNavigationHelper().gotoContactPage();
     List<GroupDataContact> before = app.getContactHelper().getContactList();
-    GroupDataContact contact = new GroupDataContact("LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null);
+    GroupDataContact contact = new GroupDataContact(0, "LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null);
     app.contactHelper.creatorNewContact(contact);
     app.getNavigationHelper().gotoHomePage();
     List<GroupDataContact> after = app.getContactHelper().getContactList();

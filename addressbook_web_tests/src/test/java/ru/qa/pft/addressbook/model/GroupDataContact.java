@@ -16,8 +16,8 @@ public class GroupDataContact {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    GroupDataContact contact = (GroupDataContact) o;
-    return Objects.equals(name, contact.name);
+    GroupDataContact that = (GroupDataContact) o;
+    return Objects.equals(name, that.name);
   }
 
   @Override
@@ -25,7 +25,7 @@ public class GroupDataContact {
     return Objects.hash(name);
   }
 
-  public GroupDataContact(String name, String fio, String nik, String city, String email, String group) {
+  public GroupDataContact(int id, String name, String fio, String nik, String city, String email, String group) {
     this.id =  Integer.MAX_VALUE;
     this.name = name;
     this.fio = fio;

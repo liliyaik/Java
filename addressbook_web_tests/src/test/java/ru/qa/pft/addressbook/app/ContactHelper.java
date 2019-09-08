@@ -1,5 +1,6 @@
 package ru.qa.pft.addressbook.app;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -86,11 +87,40 @@ public class ContactHelper extends BaseHelper {
 //      String email = "";
 //      String group = "";
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact(name, null, null, null, null, null);
+      GroupDataContact contact = new GroupDataContact(0,name, null, null, null, null, null);
       groups.add(contact);
     }
     return groups;
 
   }
+
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void DeleteSelectionContact() {
+    click(By.xpath("//input[@value='Delete']"));
+    Alert alert = wd.switchTo().alert();
+    alert.accept();
+  }
+  public void returnContactPage() {
+    click(By.linkText("home page"));
+  }
+  public void initContactModification() {
+    click(By.xpath("(//img[@alt='Edit'])[1]"));
+  }
+
+  public void fillContactForm(GroupDataContact groupData) {
+    type(By.name("firstname"), groupData.getName());
+    type(By.name("lastname"), groupData.getName());
+    type(By.name("nickname"), groupData.getName());
+    type(By.name("address"), groupData.getName());
+    type(By.name("email"), groupData.getName());
+
+  }
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
+
 }
 

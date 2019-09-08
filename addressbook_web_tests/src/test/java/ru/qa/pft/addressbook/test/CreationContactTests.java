@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CreationContactTests extends BaseTest {
 
-  @Test
+  @Test(enabled = false)
   public void testCreationContact() throws Exception {
     app.getNavigationHelper().gotoContactPage();
     List<GroupDataContact> before = app.getContactHelper().getContactList();

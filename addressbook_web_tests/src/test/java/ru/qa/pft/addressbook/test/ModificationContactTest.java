@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ModificationContactTest extends BaseTest {
 
-  @Test
+  @Test(enabled = false)
   public void testModificationContact() throws Exception {
     if (! app.contactHelper.isThereAGroup())
     {

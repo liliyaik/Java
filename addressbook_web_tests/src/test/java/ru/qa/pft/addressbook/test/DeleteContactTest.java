@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DeleteContactTest extends BaseTest {
 
-    @Test
+    @Test(enabled = false)
     public void testDeleteContact() throws Exception {
       if (! app.contactHelper.isThereAGroup())
       {

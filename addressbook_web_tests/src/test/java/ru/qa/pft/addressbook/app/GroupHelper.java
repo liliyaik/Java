@@ -64,6 +64,13 @@ public class GroupHelper<group> extends BaseHelper {
 
   }
 
+
+  public void modifyGroup(GroupData group) {
+    fillGroupForm(group);
+    submitGroupModification();
+    returmGroupPage();
+  }
+
   public void submitGroupModification() {
     click(By.name("update"));
   }

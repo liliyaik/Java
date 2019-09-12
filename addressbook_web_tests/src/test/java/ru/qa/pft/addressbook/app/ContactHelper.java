@@ -84,12 +84,13 @@ public class ContactHelper extends BaseHelper {
       String name = cells.get(1).getText();
       String lastname = cells.get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact(0,name, lastname, null, null, null, null);
+      GroupDataContact contact = new GroupDataContact(id,name, lastname, null, null, null, null);
       groups.add(contact);
     }
     return groups;
 
   }
+
 
   public void selectContact(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();

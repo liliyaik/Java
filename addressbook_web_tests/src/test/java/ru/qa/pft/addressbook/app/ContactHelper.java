@@ -79,15 +79,12 @@ public class ContactHelper extends BaseHelper {
     List<GroupDataContact> groups = new ArrayList<GroupDataContact>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      //TODO:
-//      String fio = "";
-//      String nik = "";
-//      String city = "";
-//      String email = "";
-//      String group = "";
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      //String name = element.getText();
+      String name = cells.get(1).getText();
+      String lastname = cells.get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact(0,name, null, null, null, null, null);
+      GroupDataContact contact = new GroupDataContact(0,name, lastname, null, null, null, null);
       groups.add(contact);
     }
     return groups;

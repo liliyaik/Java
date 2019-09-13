@@ -107,7 +107,7 @@ public class ContactHelper extends BaseHelper {
   }
   public void initContactModification(int id) {
     click(By.xpath("//img[@alt='Edit.php?id=" + id + "']"));
-    click(By.linkText("edit.php?id=" + Integer.toString(id)));
+//    click(By.linkText("edit.php?id=" + Integer.toString(id)));
   }
 
   public void fillContactForm(GroupDataContact groupData) {

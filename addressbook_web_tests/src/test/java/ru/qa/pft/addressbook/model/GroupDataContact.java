@@ -26,7 +26,7 @@ public class GroupDataContact {
   }
 
   public GroupDataContact(int id, String name, String fio, String nik, String city, String email, String group) {
-    this.id =  Integer.MAX_VALUE;
+    this.id =  id;//Integer.MAX_VALUE;
     this.name = name;
     this.fio = fio;
     this.nik = nik;

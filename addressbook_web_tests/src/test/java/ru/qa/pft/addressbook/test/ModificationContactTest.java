@@ -21,9 +21,11 @@ public class ModificationContactTest extends BaseTest {
     }
 
     List<GroupDataContact> before = app.getContactHelper().getContactList();
-    app.getContactHelper().selectContact(before.size() - 1);
-    app.getContactHelper().initContactModification();
-    GroupDataContact contact = new GroupDataContact(before.get(before.size()-1).getId(), "LILIYA4", "IKSANOVA4", "limma4", "Moscow city", "limma@yandex2.ru", null);
+    int index = before.size() - 1;
+    int id = before.get(index).id;
+    app.getContactHelper().selectContact(index);
+    app.getContactHelper().initContactModification(id);
+    GroupDataContact contact = new GroupDataContact(before.get(index).getId(), "LILIYA4", "IKSANOVA4", "limma4", "Moscow city", "limma@yandex2.ru", null);
     app.getContactHelper().fillContactForm(contact);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnContactPage();
@@ -31,7 +33,7 @@ public class ModificationContactTest extends BaseTest {
     Assert.assertEquals(after.size(), before.size());
 
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     before.add(contact);
     Comparator<? super GroupDataContact> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId()) ;
     before.sort(byId);

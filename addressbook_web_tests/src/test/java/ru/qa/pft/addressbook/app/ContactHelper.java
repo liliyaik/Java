@@ -83,7 +83,8 @@ public class ContactHelper extends BaseHelper {
       //String name = element.getText();
       String name = cells.get(1).getText();
       String lastname = cells.get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       GroupDataContact contact = new GroupDataContact(id,name, lastname, null, null, null, null);
       groups.add(contact);
     }
@@ -104,8 +105,9 @@ public class ContactHelper extends BaseHelper {
   public void returnContactPage() {
     click(By.linkText("home page"));
   }
-  public void initContactModification() {
-    click(By.xpath("(//img[@alt='Edit'])[1]"));
+  public void initContactModification(int id) {
+    click(By.xpath("//img[@alt='Edit.php?id=" + id + "']"));
+    click(By.linkText("edit.php?id=" + Integer.toString(id)));
   }
 
   public void fillContactForm(GroupDataContact groupData) {

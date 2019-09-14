@@ -3,7 +3,7 @@ package ru.qa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupData {
-  public int id = Integer.MAX_VALUE;;
+  public int id = Integer.MAX_VALUE;
   private String name;
   private String header;
   private String footer;

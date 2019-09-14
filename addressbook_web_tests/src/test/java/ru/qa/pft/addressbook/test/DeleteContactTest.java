@@ -13,11 +13,11 @@ import java.util.List;
 
 public class DeleteContactTest extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testDeleteContact() throws Exception {
       if (! app.contactHelper.isThereAGroup())
       {
-        app.contactHelper.creatorNewContact(new GroupDataContact(0,"LILIYA2", "IKSANOVA3", "limma4", "Moscow city", "limma@yandex2.ru", null));
+        app.contactHelper.creatorNewContact(new GroupDataContact().withId(0).withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
         app.getNavigationHelper().gotoHomePage();
       }
 

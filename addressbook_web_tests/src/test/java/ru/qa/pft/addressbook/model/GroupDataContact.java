@@ -3,7 +3,7 @@ package ru.qa.pft.addressbook.model;
 import java.util.Objects;
 
 public class GroupDataContact {
-  public int id;
+  public int id = Integer.MAX_VALUE;
   private String name;
   private String fio;
   private String nik;
@@ -23,16 +23,6 @@ public class GroupDataContact {
   @Override
   public int hashCode() {
     return Objects.hash(name);
-  }
-
-  public GroupDataContact(int id, String name, String fio, String nik, String city, String email, String group) {
-    this.id =  id;//Integer.MAX_VALUE;
-    this.name = name;
-    this.fio = fio;
-    this.nik = nik;
-    this.city = city;
-    this.email = email;
-    this.group = group;
   }
 
   public String getName() {
@@ -55,28 +45,34 @@ public class GroupDataContact {
     return email;
   }
 
-  public void withId(int id) {
+  public GroupDataContact withId(int id) {
     this.id = id;
+    return this;
   }
 
-  public void withName(String name) {
+  public GroupDataContact withName(String name) {
     this.name = name;
+    return this;
   }
 
-  public void withFio(String fio) {
+  public GroupDataContact withFio(String fio) {
     this.fio = fio;
+    return this;
   }
 
-  public void withNik(String nik) {
+  public GroupDataContact withNik(String nik) {
     this.nik = nik;
+    return this;
   }
 
-  public void withCity(String city) {
+  public GroupDataContact withCity(String city) {
     this.city = city;
+    return this;
   }
 
-  public void withEmail(String email) {
+  public GroupDataContact withEmail(String email) {
     this.email = email;
+    return this;
   }
 
   @Override

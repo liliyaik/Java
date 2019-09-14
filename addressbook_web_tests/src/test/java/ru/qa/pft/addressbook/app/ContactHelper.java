@@ -85,7 +85,7 @@ public class ContactHelper extends BaseHelper {
       String lastname = cells.get(2).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact(id,name, lastname, null, null, null, null);
+      GroupDataContact contact = new GroupDataContact().withId(id).withName(name).withFio(lastname);
       groups.add(contact);
     }
     return groups;

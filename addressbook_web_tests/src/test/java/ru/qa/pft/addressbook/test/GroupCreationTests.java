@@ -7,22 +7,21 @@ import ru.qa.pft.addressbook.model.GroupData;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends BaseTest {
 
   @Test
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    Set<GroupData> before = app.getGroupHelper().all();
     GroupData group = new GroupData().withName("test_name3").withHeader("test_surname").withFooter("test3");
     app.getGroupHelper().creatorGroup(group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    Set<GroupData> after = app.getGroupHelper().all();
     Assert.assertEquals(after.size(), before.size() + 1);
 
+    group.withId(after.stream().mapToInt(g->g.getId()).max().getAsInt());
     before.add(group);
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId()) ;
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
 
   }

@@ -11,7 +11,9 @@ import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
   public ContactHelper(WebDriver wd) {
@@ -77,6 +79,22 @@ public class ContactHelper extends BaseHelper {
 
   public List<GroupDataContact> getContactList() {
     List<GroupDataContact> groups = new ArrayList<GroupDataContact>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      //String name = element.getText();
+      String name = cells.get(1).getText();
+      String lastname = cells.get(2).getText();
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupDataContact contact = new GroupDataContact().withId(id).withName(name).withFio(lastname);
+      groups.add(contact);
+    }
+    return groups;
+
+  }
+  public Set<GroupDataContact> all() {
+    Set<GroupDataContact> groups = new HashSet<GroupDataContact>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));

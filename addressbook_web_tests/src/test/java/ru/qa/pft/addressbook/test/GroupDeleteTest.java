@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import ru.qa.pft.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class GroupDeleteTest extends BaseTest {
 
@@ -21,16 +22,16 @@ public class GroupDeleteTest extends BaseTest {
   @Test
   public void testGroupDelete() throws Exception {
 
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    Set<GroupData> before = app.getGroupHelper().all();
+    GroupData deleteGroup = before.iterator().next();
     app.getGroupHelper().selectGroup(before.size() - 1);
-    app.getGroupHelper().DeleteSelectionGroup();
+    app.getGroupHelper().deleteSelectionGroup(deleteGroup);
     app.getGroupHelper().returmGroupPage();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    Set<GroupData> after = app.getGroupHelper().all();
     Assert.assertEquals(after.size(), before.size() - 1);
 
-    before.remove(before.size() - 1);
+    before.remove(deleteGroup);
     Assert.assertEquals(before, after);
-    //app.logout();
   }
 
 }

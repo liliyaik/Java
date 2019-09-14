@@ -8,9 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class GroupHelper<group> extends BaseHelper {
@@ -51,12 +49,20 @@ public class GroupHelper<group> extends BaseHelper {
     click(By.name("new"));
   }
 
-  public void DeleteSelectionGroup() {
+  public void deleteSelectionGroup(GroupData deletedGroup) {
     click(By.name("delete"));
+  }
+  public void deleteGroup(GroupData group) {
+   selectGroupById(group.getId());
+   deleteSelectionGroup(group);
+   returmGroupPage();
   }
 
   public void selectGroup(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
+  }
+  public void selectGroupById(int id) {
+    wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
   }
 
   public void initGroupModification() {
@@ -66,6 +72,8 @@ public class GroupHelper<group> extends BaseHelper {
 
 
   public void modifyGroup(GroupData group) {
+    selectGroupById(group.getId());
+    initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
     returmGroupPage();
@@ -92,6 +100,18 @@ public class GroupHelper<group> extends BaseHelper {
 
   public List<GroupData> getGroupList() {
     List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      groups.add(new GroupData().withId(id).withName(name));
+    }
+    return groups;
+
+  }
+
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();

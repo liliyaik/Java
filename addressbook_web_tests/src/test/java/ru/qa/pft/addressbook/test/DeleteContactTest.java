@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
 import java.util.List;
+import java.util.Set;
 
 public class DeleteContactTest extends BaseTest {
 
@@ -21,10 +22,10 @@ public class DeleteContactTest extends BaseTest {
         app.getNavigationHelper().gotoHomePage();
       }
 
-      List<GroupDataContact> before = app.getContactHelper().getContactList();
+      Set<GroupDataContact> before = app.getContactHelper().all();
       app.getContactHelper().selectContact(before.size() - 1);
       app.getContactHelper().DeleteSelectionContact();
-      List<GroupDataContact> after = app.getContactHelper().getContactList();
+      Set<GroupDataContact> after = app.getContactHelper().all();
       Assert.assertEquals(after.size(), before.size() - 1);
 
       before.remove(before.size() - 1);

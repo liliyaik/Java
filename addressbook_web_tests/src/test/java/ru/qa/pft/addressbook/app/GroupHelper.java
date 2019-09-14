@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.GroupData;
+import ru.qa.pft.addressbook.model.Groups;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -110,8 +111,8 @@ public class GroupHelper<group> extends BaseHelper {
 
   }
 
-  public Set<GroupData> all() {
-    Set<GroupData> groups = new HashSet<GroupData>();
+  public Groups all() {
+    Groups groups = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();

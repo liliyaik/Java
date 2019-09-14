@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class GroupDataContact {
   public int id;
-  private final String name;
-  private final String fio;
-  private final String nik;
-  private final String city;
-  private final String email;
+  private String name;
+  private String fio;
+  private String nik;
+  private String city;
+  private String email;
   private String group;
 
 
@@ -55,8 +55,28 @@ public class GroupDataContact {
     return email;
   }
 
-  public void setId(int id) {
+  public void withId(int id) {
     this.id = id;
+  }
+
+  public void withName(String name) {
+    this.name = name;
+  }
+
+  public void withFio(String fio) {
+    this.fio = fio;
+  }
+
+  public void withNik(String nik) {
+    this.nik = nik;
+  }
+
+  public void withCity(String city) {
+    this.city = city;
+  }
+
+  public void withEmail(String email) {
+    this.email = email;
   }
 
   @Override

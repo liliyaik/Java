@@ -1,44 +1,35 @@
 package ru.qa.pft.addressbook.test;
 
-import org.testng.Assert;
 import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.qa.pft.addressbook.model.GroupData;
+import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class ModificationContactTest extends BaseTest {
 
-  @Test(enabled = true)
-  public void testModificationContact() throws Exception {
-    if (! app.contactHelper.isThereAGroup())
-    {
-      app.contactHelper.creatorNewContact(new GroupDataContact().withId(0).withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
+    @BeforeMethod
+    public void ensurePreconditions(){
       app.getNavigationHelper().gotoHomePage();
+      if(app.getContactHelper().all().size() == 0){
+        app.getContactHelper().creatorNewContact (new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
+      }
     }
 
-    List<GroupDataContact> before = app.getContactHelper().getContactList();
-    int index = before.size() - 1;
-    int id = before.get(index).id;
-    app.getContactHelper().selectContact(index);
-    app.getContactHelper().initContactModification(id);
-    GroupDataContact contact = new GroupDataContact().withName("name").withFio("Iksanova").withCity("KHimki");
-    app.getContactHelper().fillContactForm(contact);
-    app.getContactHelper().submitContactModification();
-    app.getContactHelper().returnContactPage();
-    List<GroupDataContact> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size());
+    @Test
+    public void testContactModification(){
+      Contacts before = app.getContactHelper().all();
+      GroupDataContact modifiedContact = before.iterator().next();
+        GroupDataContact contact = new GroupDataContact()
+              .withId(modifiedContact.getId()).withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru");
 
+      app.getContactHelper().modify(before, contact);
 
-    before.remove(index);
-    before.add(contact);
-    Comparator<? super GroupDataContact> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId()) ;
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+      Contacts after = app.getContactHelper().all();
+      assertEquals(after.size(), before.size());
+      assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
 }

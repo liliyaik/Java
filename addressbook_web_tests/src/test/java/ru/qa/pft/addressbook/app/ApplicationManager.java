@@ -72,4 +72,5 @@ public class ApplicationManager {
     navigationHelper.gotoGroupPage();
   }
 
+
 }

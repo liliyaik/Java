@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.GroupDataContact;
 
@@ -93,21 +94,17 @@ public class ContactHelper extends BaseHelper {
     return groups;
 
   }
-  public Set<GroupDataContact> all() {
-    Set<GroupDataContact> groups = new HashSet<GroupDataContact>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-      //String name = element.getText();
-      String name = cells.get(1).getText();
-      String lastname = cells.get(2).getText();
-      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact().withId(id).withName(name).withFio(lastname);
-      groups.add(contact);
+  public Contacts all() {
+    Contacts contacts = new Contacts();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
+    for (WebElement element : elements){
+      List<WebElement> cells = element.findElements(By.cssSelector("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new GroupDataContact().withId(id).withName(firstname).withName(lastname));
     }
-    return groups;
-
+    return contacts;
   }
 
 
@@ -120,15 +117,34 @@ public class ContactHelper extends BaseHelper {
     Alert alert = wd.switchTo().alert();
     alert.accept();
   }
-  public void returnContactPage() {
-    click(By.linkText("home page"));
+  public void delete(GroupDataContact contact) {
+    selectContactById(contact.getId());
+    DeleteSelectionContact();
+    returnContactPage();
   }
-  public void initContactModification(int id) {
-    click(By.xpath("//img[@alt='Edit.php?id=" + id + "']"));
-//    click(By.linkText("edit.php?id=" + Integer.toString(id)));
+  public void returnContactPage() {
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
+    click(By.linkText("home"));
   }
 
-  public void fillContactForm(GroupDataContact groupData) {
+  public void initContactModification(int index) {
+    click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
+  }
+  public void modify(Set<GroupDataContact> before, GroupDataContact contact) {
+    returnContactPage();
+    initContactModification(contact.getId());
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnContactPage();
+  }
+
+  private void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
+  public void fillContactForm(GroupDataContact groupData, boolean creation) {
     type(By.name("firstname"), groupData.getName());
     type(By.name("lastname"), groupData.getName());
     type(By.name("nickname"), groupData.getName());

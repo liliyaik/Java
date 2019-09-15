@@ -1,5 +1,6 @@
 package ru.qa.pft.addressbook.test;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.qa.pft.addressbook.model.ContactData;
 
@@ -11,7 +12,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class ContactPhoneTests extends TestBase {
-
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().homePage();
+    if(app.contact().all().size() == 0){
+      app.contact().creatorNewContact (new ContactData().
+              withFirstname("name").withLastname("Iksanova").withNickname("limma").withAddress("Moscow").
+              withEmails("limma@yandex.ru").withFirstemail("limma2@yandex.ru").withSecondemail("limma3@ya.ru").
+              withMobilephone("79851141541").withHomephone("222222222"));
+    }
+  }
     @Test
     public void testContactPhones(){
       app.contact().returnContactPage();

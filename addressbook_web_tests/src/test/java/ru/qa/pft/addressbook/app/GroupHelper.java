@@ -1,11 +1,9 @@
 package ru.qa.pft.addressbook.app;
 
-import org.omg.CORBA.ValueBaseHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
 

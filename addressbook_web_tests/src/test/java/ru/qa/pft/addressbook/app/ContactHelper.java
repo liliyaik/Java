@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +17,9 @@ public class ContactHelper extends BaseHelper {
 
   public void gotoContactpage() {
     click(By.linkText("add new"));
+  }
+  public void gotoHomepage() {
+    click(By.linkText("home"));
   }
 
   public void gotoContactEdit() {
@@ -68,6 +70,7 @@ public class ContactHelper extends BaseHelper {
     gotoContactpage();
     fillDataForm(contactData,true);
     SubmitCreateContact();
+    gotoHomepage();
   }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));

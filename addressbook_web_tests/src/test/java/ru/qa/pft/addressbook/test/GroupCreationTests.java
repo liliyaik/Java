@@ -12,12 +12,12 @@ public class GroupCreationTests extends BaseTest {
   @Test
   public void testGroupCreation() throws Exception {
 
-    app.getNavigationHelper().gotoGroupPage();
-    Groups before = app.getGroupHelper().all();
+    app.goTo().gotoGroupPage();
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("test2");
-    app.getGroupHelper().creatorGroup(group);
-    assertThat(app.getGroupHelper().count(), equalTo(before.size() + 1));
-    Groups after = app.getGroupHelper().all();
+    app.group().creatorGroup(group);
+    assertThat(app.group().count(), equalTo(before.size() + 1));
+    Groups after = app.group().all();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo
@@ -26,12 +26,12 @@ public class GroupCreationTests extends BaseTest {
 
   @Test
   public void testBadGroupCreation2() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
-    Groups before = app.getGroupHelper().all();
+    app.goTo().gotoGroupPage();
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("test2'");
-    app.getGroupHelper().creatorGroup(group);
-    assertThat(app.getGroupHelper().count(), equalTo(before.size()));
-    Groups after = app.getGroupHelper().all();
+    app.group().creatorGroup(group);
+    assertThat(app.group().count(), equalTo(before.size()));
+    Groups after = app.group().all();
     assertThat(after, equalTo(before));
   }
 

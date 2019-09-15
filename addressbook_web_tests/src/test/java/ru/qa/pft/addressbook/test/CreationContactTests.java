@@ -13,10 +13,10 @@ public class CreationContactTests extends BaseTest {
   @Test(enabled = true)
   public void testCreationContact() throws Exception {
 
-    Contacts before = app.getContactHelper().all();
+    Contacts before = app.contact().all();
     GroupDataContact contact = new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru");
-    app.getContactHelper().creatorNewContact(contact);
-    Contacts after = app.getContactHelper().all();
+    app.contact().creatorNewContact(contact);
+    Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(

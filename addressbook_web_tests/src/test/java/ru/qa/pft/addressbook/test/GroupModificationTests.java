@@ -12,10 +12,10 @@ public class GroupModificationTests extends BaseTest {
 
   @BeforeMethod
   public void ensurePrecondition(){
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupHelper().isThereAGroup())
+    app.goTo().gotoGroupPage();
+    if (! app.group().isThereAGroup())
     {
-      app.getGroupHelper().creatorGroup(new GroupData().withName("test_name3").withHeader("test_surname").withFooter("test3"));
+      app.group().creatorGroup(new GroupData().withName("test_name3").withHeader("test_surname").withFooter("test3"));
     }
   }
 
@@ -23,14 +23,14 @@ public class GroupModificationTests extends BaseTest {
   public void testGroupModification()
   {
 
-    Groups before = app.getGroupHelper().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName("test111").withHeader("test222").withFooter("test333");
 
-    app.getGroupHelper().modifyGroup(group);
-    assertThat(app.getGroupHelper().count(), equalTo(before.size()));
-    Groups after = app.getGroupHelper().all();
+    app.group().modifyGroup(group);
+    assertThat(app.group().count(), equalTo(before.size()));
+    Groups after = app.group().all();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
 

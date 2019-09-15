@@ -12,22 +12,22 @@ public class ModificationContactTest extends BaseTest {
 
     @BeforeMethod
     public void ensurePreconditions(){
-      app.getNavigationHelper().gotoHomePage();
-      if(app.getContactHelper().all().size() == 0){
-        app.getContactHelper().creatorNewContact (new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
+      app.goTo().homePage();
+      if(app.contact().all().size() == 0){
+        app.contact().creatorNewContact (new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
       }
     }
 
     @Test
     public void testContactModification(){
-      Contacts before = app.getContactHelper().all();
+      Contacts before = app.contact().all();
       GroupDataContact modifiedContact = before.iterator().next();
         GroupDataContact contact = new GroupDataContact()
               .withId(modifiedContact.getId()).withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru");
 
-      app.getContactHelper().modify(before, contact);
+      app.contact().modify(before, contact);
 
-      Contacts after = app.getContactHelper().all();
+      Contacts after = app.contact().all();
       assertEquals(after.size(), before.size());
       assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }

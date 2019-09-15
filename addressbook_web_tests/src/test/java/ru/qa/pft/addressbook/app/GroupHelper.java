@@ -114,6 +114,10 @@ public class GroupHelper<group> extends BaseHelper {
 
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   private Groups groupCache = null;
 
   public Groups all() {
@@ -130,4 +134,5 @@ public class GroupHelper<group> extends BaseHelper {
     return groups;
 
   }
+
 }

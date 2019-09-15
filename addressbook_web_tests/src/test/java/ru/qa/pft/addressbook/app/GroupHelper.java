@@ -56,6 +56,7 @@ public class GroupHelper<group> extends BaseHelper {
   public void deleteGroup(GroupData group) {
    selectGroupById(group.getId());
    deleteSelectionGroup(group);
+   groupCache = null;
    returmGroupPage();
   }
 
@@ -77,6 +78,7 @@ public class GroupHelper<group> extends BaseHelper {
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     returmGroupPage();
   }
 
@@ -88,6 +90,7 @@ public class GroupHelper<group> extends BaseHelper {
     initGroupCreation();
     fillGroupForm(group);
     submitGrouCreation();
+    groupCache = null;
     returmGroupPage();
   }
 
@@ -111,7 +114,12 @@ public class GroupHelper<group> extends BaseHelper {
 
   }
 
+  private Groups groupCache = null;
+
   public Groups all() {
+    if (groupCache != null){
+      return new Groups(groupCache);
+    }
     Groups groups = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {

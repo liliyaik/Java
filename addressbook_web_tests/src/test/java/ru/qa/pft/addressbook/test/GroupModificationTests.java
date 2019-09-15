@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class GroupModificationTests extends BaseTest {
+public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition(){

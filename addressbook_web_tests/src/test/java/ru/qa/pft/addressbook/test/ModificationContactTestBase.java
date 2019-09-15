@@ -3,13 +3,12 @@ package ru.qa.pft.addressbook.test;
 import org.testng.annotations.*;
 import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.Contacts;
-import ru.qa.pft.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class ModificationContactTest extends BaseTest {
+public class ModificationContactTestBase extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){

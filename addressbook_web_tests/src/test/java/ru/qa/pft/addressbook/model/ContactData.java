@@ -10,12 +10,17 @@ public class ContactData {
     private String homephone;
     private String mobilephone;
     private String workphone;
-    private String allPhones;
     private String firstemail;
     private String secondemail;
     private String thirdemail;
     private String allemails;
-    private String group;
+    private String allPhones;
+
+
+  public void setAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+  }
+
 
     public ContactData withId(int id) {
       this.id = id;
@@ -87,34 +92,33 @@ public class ContactData {
       return this;
     }
 
-    public ContactData withGroup(String group) {
-      this.group = group;
-      return this;
-    }
+//    public ContactData withGroup(String group) {
+//      this.group = group;
+//      return this;
+//    }
 
-    @Override
-    public String toString() {
-      return "ContactData{" +
-              "id=" + id +
-              ", firstname='" + firstname + '\'' +
-              ", lastname='" + lastname + '\'' +
-              ", nickname='" + nickname + '\'' +
-              ", company='" + company + '\'' +
-              ", address='" + address + '\'' +
-              ", homephone='" + homephone + '\'' +
-              ", mobilephone='" + mobilephone + '\'' +
-              ", workphone='" + workphone + '\'' +
-              ", allPhones='" + allPhones + '\'' +
-              ", firstemail='" + firstemail + '\'' +
-              ", secondemail='" + secondemail + '\'' +
-              ", thirdemail='" + thirdemail + '\'' +
-              ", allemails='" + allemails + '\'' +
-              ", group='" + group + '\'' +
-              '}';
-    }
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", homephone='" + homephone + '\'' +
+            ", mobilephone='" + mobilephone + '\'' +
+            ", workphone='" + workphone + '\'' +
+            ", firstemail='" + firstemail + '\'' +
+            ", secondemail='" + secondemail + '\'' +
+            ", thirdemail='" + thirdemail + '\'' +
+            ", allemails='" + allemails + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            '}';
+  }
 
 
-    public int getId() {
+  public int getId() {
       return id;
     }
 
@@ -154,9 +158,9 @@ public class ContactData {
       return workphone;
     }
 
-    public String getGroup() {
-      return group;
-    }
+//    public String getGroup() {
+//      return group;
+//    }
 
     public String getFirstemail() {
       return firstemail;

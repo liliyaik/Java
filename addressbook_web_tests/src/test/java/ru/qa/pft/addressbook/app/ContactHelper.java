@@ -112,8 +112,8 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("home"));
   }
 
-  public void initContactModification(int index) {
-    click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
+  public void initContactModification(int id) {
+    click(By.xpath("//a[@href='edit.php?id=" + id + "']"));
   }
   public void modify(Set<ContactData> before, ContactData contact) {
     returnContactPage();

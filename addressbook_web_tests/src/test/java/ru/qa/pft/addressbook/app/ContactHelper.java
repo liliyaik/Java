@@ -4,15 +4,10 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.qa.pft.addressbook.model.Contacts;
-import ru.qa.pft.addressbook.model.GroupData;
-import ru.qa.pft.addressbook.model.GroupDataContact;
+import ru.qa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -52,16 +47,16 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.id("LoginForm")).submit();
   }
 
-  public void fillDataForm(GroupDataContact groupDataContact, boolean creator) {
-    type(By.name("firstname"), groupDataContact.getName());
-    type(By.name("middlename"), groupDataContact.getFio());
-    type(By.name("nickname"), groupDataContact.getNik());
-    type(By.name("address"), groupDataContact.getCity());
-    type(By.name("email"), groupDataContact.getEmail());
+  public void fillDataForm(ContactData contactData, boolean creator) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getLastname());
+    type(By.name("nickname"), contactData.getNickname());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("email"), contactData.getFirstemail());
 
 //    if (creator)
 //    {
-//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(groupDataContact.getGroup());
+//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 //    }
 //    else {
 //      Assert.assertFalse(isElementPresent (By.name("new_group")));
@@ -69,31 +64,16 @@ public class ContactHelper extends BaseHelper {
 
     }
 
-  public void creatorNewContact(GroupDataContact groupDataContact) {
+  public void creatorNewContact(ContactData contactData) {
     gotoContactpage();
-    fillDataForm(groupDataContact,true);
+    fillDataForm(contactData,true);
     SubmitCreateContact();
   }
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<GroupDataContact> getContactList() {
-    List<GroupDataContact> groups = new ArrayList<GroupDataContact>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-      //String name = element.getText();
-      String name = cells.get(1).getText();
-      String lastname = cells.get(2).getText();
-      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupDataContact contact = new GroupDataContact().withId(id).withName(name).withFio(lastname);
-      groups.add(contact);
-    }
-    return groups;
 
-  }
   public Contacts all() {
     Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
@@ -102,7 +82,7 @@ public class ContactHelper extends BaseHelper {
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new GroupDataContact().withId(id).withName(firstname).withName(lastname));
+      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
     }
     return contacts;
   }
@@ -117,7 +97,7 @@ public class ContactHelper extends BaseHelper {
     Alert alert = wd.switchTo().alert();
     alert.accept();
   }
-  public void delete(GroupDataContact contact) {
+  public void delete(ContactData contact) {
     selectContactById(contact.getId());
     DeleteSelectionContact();
     returnContactPage();
@@ -132,7 +112,7 @@ public class ContactHelper extends BaseHelper {
   public void initContactModification(int index) {
     click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
   }
-  public void modify(Set<GroupDataContact> before, GroupDataContact contact) {
+  public void modify(Set<ContactData> before, ContactData contact) {
     returnContactPage();
     initContactModification(contact.getId());
     fillContactForm(contact, false);
@@ -144,17 +124,38 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void fillContactForm(GroupDataContact groupData, boolean creation) {
-    type(By.name("firstname"), groupData.getName());
-    type(By.name("lastname"), groupData.getName());
-    type(By.name("nickname"), groupData.getName());
-    type(By.name("address"), groupData.getName());
-    type(By.name("email"), groupData.getName());
+  public void fillContactForm(ContactData groupData, boolean creation) {
+    type(By.name("firstname"), groupData.getFirstname());
+    type(By.name("lastname"), groupData.getLastname());
+    type(By.name("nickname"), groupData.getNickname());
+    type(By.name("address"), groupData.getAddress());
+    type(By.name("email"), groupData.getFirstemail());
 
   }
   public void submitContactModification() {
     click(By.name("update"));
   }
 
+  public void initContactModificationById(int index) {
+    click(By.xpath("//a[@href='edit.php?id=" + index + "']"));
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    String firstmail = wd.findElement(By.name("email")).getAttribute("value");
+    String secondmail = wd.findElement(By.name("email2")).getAttribute("value");
+    String thirdmail = wd.findElement(By.name("email3")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
+            .withAddress(address)
+            .withHomephone(home).withMobilephone(mobile).withWorkphone(work)
+            .withFirstemail(firstmail).withSecondemail(secondmail).withThirdemail(thirdmail);
+  }
 }
 

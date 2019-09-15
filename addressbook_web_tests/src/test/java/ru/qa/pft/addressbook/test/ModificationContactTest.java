@@ -1,8 +1,9 @@
 package ru.qa.pft.addressbook.test;
 
 import org.testng.annotations.*;
+import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.Contacts;
-import ru.qa.pft.addressbook.model.GroupDataContact;
+import ru.qa.pft.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,16 +15,16 @@ public class ModificationContactTest extends BaseTest {
     public void ensurePreconditions(){
       app.goTo().homePage();
       if(app.contact().all().size() == 0){
-        app.contact().creatorNewContact (new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru"));
+        app.contact().creatorNewContact (new ContactData().withFirstname("name").withLastname("Iksanova").withNickname("limma").withAddress("Moscow").withEmails("limma@yandex.ru"));
       }
     }
 
     @Test
     public void testContactModification(){
       Contacts before = app.contact().all();
-      GroupDataContact modifiedContact = before.iterator().next();
-        GroupDataContact contact = new GroupDataContact()
-              .withId(modifiedContact.getId()).withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru");
+      ContactData modifiedContact = before.iterator().next();
+      ContactData contact = new ContactData()
+              .withId(modifiedContact.getId()).withFirstname("name2").withLastname("Iksanova2").withNickname("limma2").withAddress("Moscow").withEmails("limma@yandex2.ru");
 
       app.contact().modify(before, contact);
 

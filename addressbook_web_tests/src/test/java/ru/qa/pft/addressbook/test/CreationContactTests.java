@@ -1,8 +1,8 @@
 package ru.qa.pft.addressbook.test;
 
 import org.testng.annotations.*;
+import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.Contacts;
-import ru.qa.pft.addressbook.model.GroupDataContact;
 
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -14,7 +14,7 @@ public class CreationContactTests extends BaseTest {
   public void testCreationContact() throws Exception {
 
     Contacts before = app.contact().all();
-    GroupDataContact contact = new GroupDataContact().withName("name").withFio("Iksanova").withNik("limma").withCity("Moscow").withEmail("limma@yandex.ru");
+    ContactData contact = new ContactData().withFirstname("name").withLastname("Iksanova").withNickname("limma").withAddress("Moscow").withEmails("limma@yandex.ru");
     app.contact().creatorNewContact(contact);
     Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size() + 1));

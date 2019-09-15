@@ -16,6 +16,16 @@ public class ContactData {
     private String allemails;
     private String allPhones;
 
+  public String getWithAllemails() {
+    return withAllemails;
+  }
+
+  public ContactData withAllemails(String withAllemails) {
+    this.withAllemails = withAllemails;
+    return this;
+  }
+
+  private String withAllemails;
 
   public void setAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -114,6 +124,7 @@ public class ContactData {
             ", thirdemail='" + thirdemail + '\'' +
             ", allemails='" + allemails + '\'' +
             ", allPhones='" + allPhones + '\'' +
+            ", withAllemails='" + withAllemails + '\'' +
             '}';
   }
 

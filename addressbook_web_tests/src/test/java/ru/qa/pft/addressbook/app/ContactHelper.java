@@ -130,12 +130,13 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void fillContactForm(ContactData groupData, boolean creation) {
-    type(By.name("firstname"), groupData.getFirstname());
-    type(By.name("lastname"), groupData.getLastname());
-    type(By.name("nickname"), groupData.getNickname());
-    type(By.name("address"), groupData.getAddress());
-    type(By.name("email"), groupData.getFirstemail());
+  public void fillContactForm(ContactData contactDate, boolean creation) {
+    type(By.name("firstname"), contactDate.getFirstname());
+    type(By.name("lastname"), contactDate.getLastname());
+    type(By.name("nickname"), contactDate.getNickname());
+    type(By.name("address"), contactDate.getAddress());
+    type(By.name("email"), contactDate.getFirstemail());
+    type(By.name("photo"), contactDate.getPhoto().getAbsolutePath());
 
   }
   public void submitContactModification() {
@@ -157,6 +158,7 @@ public class ContactHelper extends BaseHelper {
     String firstmail = wd.findElement(By.name("email")).getAttribute("value");
     String secondmail = wd.findElement(By.name("email2")).getAttribute("value");
     String thirdmail = wd.findElement(By.name("email3")).getAttribute("value");
+
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
             .withAddress(address)

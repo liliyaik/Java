@@ -51,7 +51,7 @@ public class ContactHelper extends BaseHelper {
 
   public void fillDataForm(ContactData contactData, boolean creator) {
     type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("middlename"), contactData.getLastname());
+    type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNickname());
     type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getFirstemail());

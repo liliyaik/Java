@@ -1,7 +1,0 @@
-4192 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testCreationContact
-10105 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testCreationContact with parameters[ContactData{id=90, firstname='name 0', lastname='lsatname 0', nickname='nikname 0', company='null', address='null', homephone='null', mobilephone='null', workphone='null', firstemail='null', secondemail='null', thirdemail='null', allemails='null', allPhones='null', withAllemails='null'}]
-10106 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testCreationContact
-15247 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testCreationContact with parameters[ContactData{id=91, firstname='name 1', lastname='lsatname 1', nickname='nikname 1', company='null', address='null', homephone='null', mobilephone='null', workphone='null', firstemail='null', secondemail='null', thirdemail='null', allemails='null', allPhones='null', withAllemails='null'}]
-15248 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testCreationContact
-20513 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testCreationContact with parameters[ContactData{id=92, firstname='name 2', lastname='lsatname 2', nickname='nikname 2', company='null', address='null', homephone='null', mobilephone='null', workphone='null', firstemail='null', secondemail='null', thirdemail='null', allemails='null', allPhones='null', withAllemails='null'}]
-20514 [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testCreationContact

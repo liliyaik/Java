@@ -28,12 +28,12 @@ public class ContactData {
       return this;
     }
 
-  public String getWithAllemails() {
-    return withAllemails;
+  public String getallemails() {
+    return allemails;
   }
 
-  public ContactData withAllemails(String withAllemails) {
-    this.withAllemails = withAllemails;
+  public ContactData withallemails(String allemails) {
+    this.allemails = allemails;
     return this;
   }
 

@@ -34,12 +34,12 @@ public class CreationContactTests extends TestBase {
     return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
-  @Test(enabled = true)
-  public void testCreationContact() throws Exception {
+  @Test(dataProvider = "validGroups")
+  public void testCreationContact(ContactData contact) throws Exception {
 
     File photo = new File("src/test/resources/imgcat.jpg");
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withFirstname("Liliya").withLastname("Iksanova").withNickname("limma").withCompany("company").withAddress("Moscow").withMobilephone("9778046498").withPhoto(photo);
+    //ContactData contact = new ContactData().withFirstname("Liliya").withLastname("Iksanova").withNickname("limma").withCompany("company").withAddress("Moscow").withMobilephone("9778046498").withPhoto(photo);
     app.contact().creatorNewContact(contact);
     Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size() + 1));

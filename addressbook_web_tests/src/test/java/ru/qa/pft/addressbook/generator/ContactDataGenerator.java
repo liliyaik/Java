@@ -49,10 +49,10 @@ public class ContactDataGenerator {
 
   }
 
-  private void saveAsXml(List<ContactData> groups, File file) throws IOException {
+  private void saveAsXml(List<ContactData> contactData, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
-    String xml = xstream.toXML(groups);
+    String xml = xstream.toXML(contactData);
     Writer writer = new FileWriter(file);
     writer.write(xml);
     writer.close();

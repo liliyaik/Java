@@ -1,14 +1,35 @@
 package ru.qa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
+@XStreamAlias("group")
+@Entity
+@Table(name = "group_list")
 public class GroupData {
-  @XStreamOmitField
-  public int id = Integer.MAX_VALUE;
+
+  @Id
+  @Column(name = "group_id")
+  private int id = Integer.MAX_VALUE;
+
+  @Column(name = "group_name")
   private String name;
+
+
+  @Type(type = "text")
+  @Column(name = "group_header")
   private String header;
+
+
+  @Type(type = "text")
+  @Column(name = "group_footer")
   private String footer;
   private String group;
 

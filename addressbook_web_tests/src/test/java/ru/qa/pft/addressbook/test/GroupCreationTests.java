@@ -1,6 +1,8 @@
 package ru.qa.pft.addressbook.test;
 
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
@@ -9,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class GroupCreationTests extends TestBase {
+
+  Logger logger = LoggerFactory.getLogger(GroupCreationTests.class);
+
   @DataProvider
   public Iterator<Object[]> validGroups() throws IOException {
     try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")))) {

@@ -1,0 +1,42 @@
+206  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testBadGroupCreation
+223  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testBadGroupCreation with parameters[]
+486  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+488  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 0'}]
+489  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+490  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 1'}]
+492  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+498  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 2'}]
+500  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+508  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 3'}]
+509  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+513  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 4'}]
+514  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+518  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 5'}]
+519  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+524  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 6'}]
+526  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+529  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 7'}]
+531  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+534  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 8'}]
+535  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+538  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 9'}]
+539  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+542  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 10'}]
+543  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+545  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 11'}]
+547  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+549  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 12'}]
+550  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+552  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 13'}]
+554  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+559  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 14'}]
+563  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+567  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 15'}]
+568  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+571  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 16'}]
+573  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+578  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 17'}]
+579  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+581  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 18'}]
+583  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Start test testGroupCreation
+587  [main] INFO  ru.qa.pft.addressbook.test.TestBase - Stop test testGroupCreation with parameters[GroupData{id=0, name='test 19'}]

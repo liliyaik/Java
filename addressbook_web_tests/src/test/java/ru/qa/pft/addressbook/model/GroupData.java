@@ -1,8 +1,11 @@
 package ru.qa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Objects;
 
 public class GroupData {
+  @XStreamOmitField
   public int id = Integer.MAX_VALUE;
   private String name;
   private String header;

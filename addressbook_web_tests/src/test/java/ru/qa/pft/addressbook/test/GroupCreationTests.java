@@ -4,23 +4,29 @@ import org.testng.annotations.*;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
 
-import java.lang.reflect.Array;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class GroupCreationTests extends TestBase {
   @DataProvider
-  public Iterator<Object[]> validGroup(){
+  public Iterator<Object[]> validGroup()  throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    list.add(new Object[] {new GroupData().withName("test1").withHeader("header1").withFooter("footer1")});
-    list.add(new Object[] {new GroupData().withName("test1").withHeader("header1").withFooter("footer1")});
-    list.add(new Object[] {new GroupData().withName("test1").withHeader("header1").withFooter("footer1")});
-    return  list.iterator();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.csv")));
+    String line = reader.readLine();
+    while (line != null) {
+      String[] split = line.split(";");
+      list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+      line = reader.readLine();
+    }
+    return list.iterator();
   }
 
 

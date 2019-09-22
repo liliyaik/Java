@@ -3,6 +3,7 @@ package ru.qa.pft.addressbook.model;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,21 +15,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "group_list")
 public class GroupData {
+  private String group;
   @XStreamOmitField
   @Id
   @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
 
-  //@Expose
+  @Expose
   @Column(name = "group_name")
   private String name;
 
+  @Expose
   @Type(type = "text")
   @Column(name = "group_header")
   private String header;
-  private String group;
 
-
+  @Expose
   @Type(type = "text")
   @Column(name = "group_footer")
   private String footer;

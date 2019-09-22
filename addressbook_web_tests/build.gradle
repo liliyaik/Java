@@ -1,4 +1,3 @@
-import com.sun.javafx.runtime.SystemProperties
 
 apply plugin: 'java'
 repositories{mavenCentral()}

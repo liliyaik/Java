@@ -43,7 +43,5 @@ import java.util.List;
       session.getTransaction().commit();
       session.close();
 
-
-
     }
   }

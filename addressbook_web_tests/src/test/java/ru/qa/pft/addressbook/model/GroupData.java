@@ -15,7 +15,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "group_list")
 public class GroupData {
-  private String group;
   @XStreamOmitField
   @Id
   @Column(name = "group_id")
@@ -65,10 +64,6 @@ public class GroupData {
     return footer;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   @Override
   public String toString() {
     return "GroupData{" +
@@ -93,10 +88,6 @@ public class GroupData {
 
   public GroupData withFooter(String footer) {
     this.footer = footer;
-    return this;
-  }
-  private GroupData withGroup(String group){
-    this.group = group;
     return this;
   }
 }

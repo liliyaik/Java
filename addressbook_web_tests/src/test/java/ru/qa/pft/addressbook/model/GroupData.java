@@ -19,20 +19,19 @@ public class GroupData {
   @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
 
-  @Expose
+  //@Expose
   @Column(name = "group_name")
   private String name;
 
   @Type(type = "text")
   @Column(name = "group_header")
   private String header;
+  private String group;
 
 
   @Type(type = "text")
   @Column(name = "group_footer")
   private String footer;
-  private String group;
-
 
   @Override
   public boolean equals(Object o) {
@@ -92,6 +91,10 @@ public class GroupData {
 
   public GroupData withFooter(String footer) {
     this.footer = footer;
+    return this;
+  }
+  private GroupData withGroup(String group){
+    this.group = group;
     return this;
   }
 }

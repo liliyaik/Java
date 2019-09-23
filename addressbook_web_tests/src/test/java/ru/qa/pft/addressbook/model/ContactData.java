@@ -1,46 +1,70 @@
 package ru.qa.pft.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table(name = "addressbook")
+
 public class ContactData {
-    @XStreamOmitField
+  @Id
+  @Column(name = "id")
     private int id = Integer.MAX_VALUE;
+  @Column(name = "firstname")
     private String firstname;
+  @Column(name = "lastname")
     private String lastname;
+  @Column(name = "nickname")
     private String nickname;
+  @Column(name = "company")
     private String company;
+  @Column(name = "address")
+  @Type(type = "text")
     private String address;
+  @Column(name = "home")
+  @Type(type = "text")
     private String homephone;
+  @Column(name = "mobile")
+  @Type(type = "text")
     private String mobilephone;
+  @Column(name = "work")
+  @Type(type = "text")
     private String workphone;
+  @Column(name = "email")
+  @Type(type = "text")
     private String firstemail;
+  @Column(name = "email2")
+  @Type(type = "text")
     private String secondemail;
+  @Column(name = "email3")
+  @Type(type = "text")
     private String thirdemail;
-    private String allemails;
+
+  @Transient
     private String allPhones;
-    private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
-    public File getPhoto() {
-      return photo;
+  public File getPhoto() {
+    if (photo != null) {
+
+      return new File(photo);
+
+    } else {
+
+      return null;
+
     }
-
-    public ContactData withPhoto(File photo) {
-      this.photo = photo;
-      return this;
-    }
-
-  public String getallemails() {
-    return allemails;
   }
 
-  public ContactData withallemails(String allemails) {
-    this.allemails = allemails;
+  public ContactData withPhoto(File photo) {
+    this.photo = photo.getPath();
     return this;
   }
-
-  private String withAllemails;
 
   public void setAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -112,10 +136,6 @@ public class ContactData {
       return this;
     }
 
-    public ContactData withEmails(String allEmails) {
-      this.allemails = allEmails;
-      return this;
-    }
 
 //    public ContactData withGroup(String group) {
 //      this.group = group;
@@ -137,9 +157,7 @@ public class ContactData {
             ", firstemail='" + firstemail + '\'' +
             ", secondemail='" + secondemail + '\'' +
             ", thirdemail='" + thirdemail + '\'' +
-            ", allemails='" + allemails + '\'' +
             ", allPhones='" + allPhones + '\'' +
-            ", withAllemails='" + withAllemails + '\'' +
             '}';
   }
 
@@ -200,9 +218,7 @@ public class ContactData {
       return thirdemail;
     }
 
-    public String getAllemails() {
-      return allemails;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -210,7 +226,6 @@ public class ContactData {
       if (o == null || getClass() != o.getClass()) return false;
 
       ContactData that = (ContactData) o;
-
       if (id != that.id) return false;
       if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
       return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;

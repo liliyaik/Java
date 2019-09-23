@@ -89,7 +89,7 @@ public class ContactHelper extends BaseHelper {
       String allPhones = cells.get(5).getText();
       String allEmails = cells.get(4).getText();
       contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-              .withAddress(address).withAllPhones(allPhones).withallemails(allEmails));
+              .withAddress(address).withAllPhones(allPhones));
     }
     return contacts;
   }

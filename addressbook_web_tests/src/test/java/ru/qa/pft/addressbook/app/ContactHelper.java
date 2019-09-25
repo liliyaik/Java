@@ -136,7 +136,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("nickname"), contactDate.getNickname());
     type(By.name("address"), contactDate.getAddress());
     type(By.name("email"), contactDate.getFirstemail());
-    type(By.name("photo"), contactDate.getPhoto().getAbsolutePath());
+//    type(By.name("photo"), contactDate.getPhoto().getAbsolutePath());
 
   }
   public void submitContactModification() {

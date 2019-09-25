@@ -22,6 +22,7 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private String browser;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -45,6 +46,7 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
+    dbHelper = new DbHelper(wd);
     sessionHelper.Login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
   }
 
@@ -72,4 +74,9 @@ public class ApplicationManager {
   public ContactHelper contact() {
     return contactHelper;
   }
+
+  public DbHelper db() {
+    return dbHelper;
+  }
+
 }

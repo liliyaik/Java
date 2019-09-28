@@ -8,6 +8,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.qa.pft.addressbook.app.ApplicationManager;
+import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
 

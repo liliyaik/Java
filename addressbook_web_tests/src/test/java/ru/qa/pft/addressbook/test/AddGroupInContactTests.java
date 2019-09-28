@@ -26,9 +26,7 @@ public class AddGroupInContactTests extends TestBase {
     @Test
     public void testsAddGroupInContact(){
       Groups groups = app.db().groups();
-
       Contacts before = app.db().contacts();
-      System.out.println(before);
       ContactData addedContact = before.iterator().next();
       ContactData contact = new ContactData().withId(addedContact.getId()).inGroup(groups.iterator().next());
       if(contact.getGroups().size()!=app.db().groups().size()) {

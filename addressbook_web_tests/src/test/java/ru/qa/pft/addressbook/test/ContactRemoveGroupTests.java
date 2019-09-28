@@ -7,12 +7,11 @@ import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
 
-import static org.testng.Assert.assertEquals;
-import static ru.qa.pft.addressbook.test.TestBase.app;
+import java.util.Set;
 
-public class AddGroupInContactTests extends TestBase {
+public class ContactRemoveGroupTests extends TestBase {
   @BeforeMethod
-  public void ensurePreconditions() {
+  public void ensurePreconditions(){
     app.contact().gotoHomepage();
     if (app.db().groups().size() == 0) {
       app.goTo().gotoGroupPage();
@@ -23,18 +22,20 @@ public class AddGroupInContactTests extends TestBase {
       app.contact().creatorNewContact(new ContactData().withFirstname("name").withLastname("Iksanova").withNickname("limma").withAddress("Moscow"));
     }
   }
-    @Test
-    public void testsAddGroupInContact(){
-      Groups groups = app.db().groups();
 
-      Contacts before = app.db().contacts();
-      System.out.println(before);
-      ContactData addedContact = before.iterator().next();
-      ContactData contact = new ContactData().withId(addedContact.getId()).inGroup(groups.iterator().next());
-      if(contact.getGroups().size()!=app.db().groups().size()) {
-        app.contact().addgroup(contact);
-        Contacts after = app.db().contacts();
-        assertEquals(after.size(), before.size());
-      }
+  @Test
+  public void testContactRemoveGroup(){
+    Groups groups = app.db().groups();
+    Contacts before = app.db().contacts();
+    ContactData removedContact = before.iterator().next();
+    ContactData contact = new ContactData().withId(removedContact.getId()).inGroup(groups.iterator().next());
+    if(contact.getGroups().size() == 0){
+      app.contact().addgroup(contact);
+    }
+    Set<GroupData> contactgroups = (Set<GroupData>) contact.getGroups();
+    GroupData groupToRemove = contactgroups.iterator().next();
+    GroupData group = new GroupData().withId(groupToRemove.getId());
+    app.contact().removefromgroup(contact, group);
   }
 }
+

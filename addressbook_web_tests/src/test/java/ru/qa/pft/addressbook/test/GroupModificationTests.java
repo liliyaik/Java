@@ -19,21 +19,19 @@ public class GroupModificationTests extends TestBase {
   }
 
   @Test
-  public void testGroupModification()
-  {
+  public void testGroupModification() {
     Groups before = app.db().groups();
     app.goTo().gotoGroupPage();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
-            .withId(modifiedGroup.getId()).withName("test111").withHeader("test222").withFooter("test333");
+            .withId(modifiedGroup.getId()).withName("name_test").withHeader("header_test").withFooter("footer_test");
 
     app.group().modifyGroup(group);
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
-
-
+    verifyGroupListInUi();
   }
 
-
 }
+

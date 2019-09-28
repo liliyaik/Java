@@ -5,6 +5,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -43,8 +45,6 @@ public class ContactData {
   @Type(type = "text")
     private String thirdemail;
 
-  @Transient
-    private String allPhones;
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
@@ -65,11 +65,6 @@ public class ContactData {
     this.photo = photo.getPath();
     return this;
   }
-
-  public void setAllPhones(String allPhones) {
-    this.allPhones = allPhones;
-  }
-
 
     public ContactData withId(int id) {
       this.id = id;
@@ -116,10 +111,6 @@ public class ContactData {
       return this;
     }
 
-    public ContactData withAllPhones(String allPhones) {
-      this.allPhones = allPhones;
-      return this;
-    }
 
     public ContactData withFirstemail(String firstemail) {
       this.firstemail = firstemail;
@@ -157,8 +148,10 @@ public class ContactData {
             ", firstemail='" + firstemail + '\'' +
             ", secondemail='" + secondemail + '\'' +
             ", thirdemail='" + thirdemail + '\'' +
-            ", allPhones='" + allPhones + '\'' +
             '}';
+  }
+  public Set<GroupData> getGroups() {
+    return groups;
   }
 
 
@@ -194,17 +187,9 @@ public class ContactData {
       return mobilephone;
     }
 
-    public String getAllPhones() {
-      return allPhones;
-    }
-
     public String getWorkphone() {
       return workphone;
     }
-
-//    public String getGroup() {
-//      return group;
-//    }
 
     public String getFirstemail() {
       return firstemail;
@@ -238,4 +223,14 @@ public class ContactData {
       result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
       return result;
     }
-  }
+    public ContactData inGroup(GroupData group) {
+      groups.add(group);
+      return this;
+    }
+
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+    }
+

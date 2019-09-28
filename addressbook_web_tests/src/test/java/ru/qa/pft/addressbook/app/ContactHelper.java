@@ -4,8 +4,10 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.ContactData;
+import ru.qa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 import java.util.Set;
@@ -136,7 +138,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("nickname"), contactDate.getNickname());
     type(By.name("address"), contactDate.getAddress());
     type(By.name("email"), contactDate.getFirstemail());
-//    type(By.name("photo"), contactDate.getPhoto().getAbsolutePath());
+
 
   }
   public void submitContactModification() {
@@ -165,5 +167,31 @@ public class ContactHelper extends BaseHelper {
             .withHomephone(home).withMobilephone(mobile).withWorkphone(work)
             .withFirstemail(firstmail).withSecondemail(secondmail).withThirdemail(thirdmail);
   }
-}
+
+  public void addgroup(ContactData contact) {
+    selectContactById(contact.getId());
+    addSelectedContactToGroup(contact);
+    gotoHomepage();
+  }
+
+  private void addSelectedContactToGroup(ContactData contact) {  
+      new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+      click(By.xpath("//input[@value='Add to']"));
+      wd.findElement(By.cssSelector("div.msgbox"));
+    }
+  
+
+  public void removefromgroup(ContactData contact, GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
+    selectContactById(contact.getId());
+    deleteSelectedContactFromGroup(contact, group);
+    gotoHomepage();
+  }
+
+  private void deleteSelectedContactFromGroup(ContactData contact, GroupData group) {
+      click(By.xpath("//input[@name='remove']"));
+      wd.findElement(By.cssSelector("div.msgbox"));
+    }
+  }
+
 

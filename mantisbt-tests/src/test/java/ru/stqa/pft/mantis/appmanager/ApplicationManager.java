@@ -1,4 +1,4 @@
-package appmanager;
+package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -16,12 +16,13 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   private final Properties properties;
-  public WebDriver wd;
+  private WebDriver wd;
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private UsersAdministrationHelper usersAdministrationHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -31,8 +32,9 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
   }
+
+
 
   private boolean isElementPresent(By by) {
     try {
@@ -43,6 +45,11 @@ public class ApplicationManager {
     }
   }
 
+  public void stop() {
+    if (wd != null) {
+      wd.quit();
+    }
+  }
 
   public HttpSession newSession(){
     return new HttpSession(this);
@@ -52,6 +59,19 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  public FtpHelper ftp() {
+    if(ftp == null) {
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
+  }
 
   public WebDriver getDriver() {
     if (wd == null){
@@ -67,31 +87,14 @@ public class ApplicationManager {
     }
     return wd;
   }
-  public void stop() {
-    if (wd != null) {
-      wd.quit();
-    }
-  }
 
-  public FtpHelper ftp() {
-    if(ftp == null) {
-      ftp = new FtpHelper(this);
-    }
-    return ftp;
-  }
-
-   public RegistrationHelper registration() {
-    if (registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
-    }
-    return registrationHelper;
-  }
   public MailHelper mail(){
     if(mailHelper == null){
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
   }
+
   public JamesHelper james(){
     if (jamesHelper == null){
       jamesHelper = new JamesHelper(this);
@@ -99,4 +102,10 @@ public class ApplicationManager {
     return jamesHelper;
   }
 
+  public UsersAdministrationHelper usersadmin(){
+    if (usersAdministrationHelper == null){
+      usersAdministrationHelper = new UsersAdministrationHelper(this);
+    }
+    return usersAdministrationHelper;
+  }
 }

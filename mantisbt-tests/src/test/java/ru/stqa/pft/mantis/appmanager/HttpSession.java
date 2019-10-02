@@ -1,4 +1,5 @@
-package appmanager;
+package ru.stqa.pft.mantis.appmanager;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -24,7 +25,7 @@ public class HttpSession {
     httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
 
-  public boolean login (String username, String password) throws IOException {
+  public boolean login (String username, String password) throws IOException{
     HttpPost post = new HttpPost(app.getProperty("web.baseUrl") + "/login.php");
     List<NameValuePair> params = new ArrayList<>();
     params.add(new BasicNameValuePair("username",username));
@@ -34,6 +35,7 @@ public class HttpSession {
     post.setEntity(new UrlEncodedFormEntity(params));
     CloseableHttpResponse response = httpclient.execute(post);
     String body = getTextFrom(response);
+//    System.out.println(body);
     return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
   }
 

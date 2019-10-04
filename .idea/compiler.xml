@@ -8,6 +8,8 @@
       <module name="mantis-tests.test" target="1.8" />
       <module name="mantisbt-tests.main" target="1.8" />
       <module name="mantisbt-tests.test" target="1.8" />
+      <module name="rest-sample.main" target="1.8" />
+      <module name="rest-sample.test" target="1.8" />
       <module name="sendbox.main" target="1.8" />
       <module name="sendbox.test" target="1.8" />
       <module name="soap-sample.main" target="1.8" />

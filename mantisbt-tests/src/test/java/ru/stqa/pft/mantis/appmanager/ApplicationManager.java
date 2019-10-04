@@ -25,6 +25,7 @@ public class ApplicationManager {
   private UsersAdministrationHelper usersAdministrationHelper;
   private SoapHelper soapHelper;
 
+
   public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
@@ -34,8 +35,6 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
   }
-
-
 
   private boolean isElementPresent(By by) {
     try {

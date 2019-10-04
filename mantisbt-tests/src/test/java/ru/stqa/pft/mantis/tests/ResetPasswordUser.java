@@ -3,8 +3,10 @@ package ru.stqa.pft.mantis.tests;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.pft.mantis.appmanager.DbHelper;
 import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -19,8 +21,10 @@ public class ResetPasswordUser extends TestBase{
 
   @Test
   public void testResetPasswordUser() throws IOException, MessagingException {
-    String username = "user1";
-    String email = "user1@localhost";
+    UserData ud =  DbHelper.getUsernameFromDB();
+    System.out.println(ud.toString());
+    String username = ud.getUsername();//"user1";
+    String email = ud.getEmail();// "user1@localhost";
     String password = "password";
     String newpassword = "newpassword";
     String adminname = app.getProperty("web.adminLogin");

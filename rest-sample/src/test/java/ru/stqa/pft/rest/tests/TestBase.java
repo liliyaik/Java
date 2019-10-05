@@ -31,8 +31,9 @@ public class TestBase {
     String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json?limit=500"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
+    System.out.println(parsed);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-
+    System.out.println(issues);
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
 

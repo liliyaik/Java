@@ -15,7 +15,7 @@ public class RestTests extends TestBase {
 
     int isId = 50;
     Set<Issue> oldIssues = getIssues();
-    Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
+    Issue newIssue = new Issue().withSubject("Test issue lil").withDescription("New test issue");
     int issueId = createIssue(newIssue);
     System.out.println("Created issue " + issueId);
     Set<Issue> newIssues = getIssues();

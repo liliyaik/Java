@@ -1,4 +1,4 @@
-package trs.stqa.pft.rest.tests;
+package ru.stqa.pft.rest.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -33,27 +33,13 @@ public class RestAssuredTests extends TestBase {
 
   public Set<Issue> getIssues() throws IOException {
 
-  //  String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json?limit=500"))
-    //        .returnContent().asString();
     String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json?limit=500").asString();
-
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
   }
-/*
-  private Executor getExecutor() {
-    return  Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490","");
-  }
-*/
+
   public int createIssue(Issue newIssue) throws IOException {
-/*
-    String json = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json?limit=500").
-            bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
-                     new BasicNameValuePair("description", newIssue.getDescription())))
-            .returnContent().asString();
-   */
     String json = RestAssured.given().parameter("subject", newIssue.getSubject())
             .parameter("description", newIssue.getDescription())
             .post("https://bugify.stqa.ru/api/issues.json?limit=500").asString();

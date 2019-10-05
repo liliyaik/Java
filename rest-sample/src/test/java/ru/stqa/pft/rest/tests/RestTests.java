@@ -1,4 +1,4 @@
-package trs.stqa.pft.rest.tests;
+package ru.stqa.pft.rest.tests;
 
 import org.testng.annotations.Test;
 
@@ -14,8 +14,6 @@ public class RestTests extends TestBase {
   public void testCreateIssue() throws IOException {
 
     int isId = 50;
-   // skipIfNotFixed(isId);
-
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);

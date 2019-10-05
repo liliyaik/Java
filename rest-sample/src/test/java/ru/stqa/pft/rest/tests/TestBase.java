@@ -1,4 +1,4 @@
-package trs.stqa.pft.rest.tests;
+package ru.stqa.pft.rest.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;

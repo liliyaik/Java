@@ -1,4 +1,4 @@
-package trs.stqa.pft.rest.tests;
+package ru.stqa.pft.rest.tests;
 
 public class Issue extends TestBase{
   private int id;

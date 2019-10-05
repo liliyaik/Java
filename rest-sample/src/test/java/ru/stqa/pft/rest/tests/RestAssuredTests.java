@@ -22,6 +22,7 @@ public class RestAssuredTests extends TestBase {
 
   @Test
   public void testCreateIssue() throws IOException {
+    skipIfNotFixed(1792);
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
@@ -32,7 +33,7 @@ public class RestAssuredTests extends TestBase {
   }
 
   public Set<Issue> getIssues() throws IOException {
-
+    skipIfNotFixed(1792);
     String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json?limit=600").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
@@ -40,6 +41,7 @@ public class RestAssuredTests extends TestBase {
   }
 
   public int createIssue(Issue newIssue) throws IOException {
+    skipIfNotFixed(1792);
     String json = RestAssured.given().parameter("subject", newIssue.getSubject())
             .parameter("description", newIssue.getDescription())
             .post("https://bugify.stqa.ru/api/issues.json?limit=600").asString();

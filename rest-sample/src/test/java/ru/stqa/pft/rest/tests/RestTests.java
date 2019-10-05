@@ -13,7 +13,6 @@ public class RestTests extends TestBase {
   @Test(enabled = true)
   public void testCreateIssue() throws IOException {
 
-    int isId = 50;
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue lil").withDescription("New test issue");
     int issueId = createIssue(newIssue);

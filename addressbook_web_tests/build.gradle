@@ -1,6 +1,7 @@
 
 apply plugin: 'java'
 repositories{mavenCentral()}
+mainClassName = "ru.qa.pft.addressbook.test.GroupModificationTests"
 dependencies{
     compile 'org.testng:testng:7.0.0-beta7'
     compile 'org.seleniumhq.selenium:selenium-java:3.141.59'

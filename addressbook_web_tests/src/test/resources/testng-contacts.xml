@@ -4,9 +4,9 @@
     <test name="Contact" >
         <classes>
             <class name="ru.qa.pft.addressbook.test.CreationContactTests" />
-            <class name="ru.qa.pft.addressbook.test.ModificationContactTestBase" />
-            <class name="ru.qa.pft.addressbook.test.ContactPhoneEmailTests" />
-            <class name="ru.qa.pft.addressbook.test.GroupDeleteTestBase" />
+            <!--<class name="ru.qa.pft.addressbook.test.ModificationContactTestBase" />-->
+            <!--<class name="ru.qa.pft.addressbook.test.ContactPhoneEmailTests" />-->
+            <!--<class name="ru.qa.pft.addressbook.test.GroupDeleteTestBase" />-->
         </classes>
     </test>
 

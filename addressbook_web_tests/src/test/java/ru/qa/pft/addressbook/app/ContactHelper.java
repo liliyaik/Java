@@ -9,8 +9,11 @@ import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.GroupData;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import static ru.qa.pft.addressbook.test.TestBase.app;
 
 public class ContactHelper extends BaseHelper {
   public ContactHelper(WebDriver wd) {
@@ -67,6 +70,18 @@ public class ContactHelper extends BaseHelper {
 //    }
 
     }
+  public ContactData GetFreeContact(){
+    Contacts contacts = app.db().contacts();
+    ContactData addedContact = null;
+    Iterator<ContactData> ci = contacts.iterator();
+    while(ci.hasNext()) {
+      ContactData c = ci.next();
+      if(c.getGroups().size() == 0){
+        addedContact = c;
+      }
+    }
+    return  addedContact;
+  }
 
   public void creatorNewContact(ContactData contactData) {
     gotoContactpage();

@@ -6,13 +6,10 @@ import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
-import java.util.Set;
 import java.util.Iterator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.testng.Assert.assertEquals;
-import static ru.qa.pft.addressbook.test.TestBase.app;
 
 public class AddGroupInContactTests extends TestBase {
   @BeforeMethod
@@ -42,10 +39,15 @@ public class AddGroupInContactTests extends TestBase {
 //      assertEquals(after.size(), before.size());
 //      assertEquals(contact.getGroups().size(), app.db().groups().size());
 //  }
-  @Test
+
+    @Test
   public void testsAddGroupInContact(){
     Contacts contacts = app.db().contacts();
-    ContactData addedContact = contacts.iterator().next();
+    ContactData addedContact = app.contact().GetFreeContact();
+    if(addedContact == null){
+      app.contact().creatorNewContact(new ContactData().withFirstname("name").withLastname("Iksanova").withNickname("limma").withAddress("Moscow"));
+      addedContact = app.contact().GetFreeContact();
+    }
     Groups groups = app.db().groups();
     GroupData linkedGroup = groups.iterator().next();
     Groups groupsOfAddedContact = addedContact.getGroups();
@@ -57,12 +59,6 @@ public class AddGroupInContactTests extends TestBase {
       } else {
         break;
       }
-    }
-    if (groupsOfAddedContact.equals(groups)) {
-      app.goTo().gotoGroupPage();
-      linkedGroup = new GroupData().withName("test222").withFooter("footer2").withHeader("header2");
-      app.group().creatorGroup(linkedGroup);
-      app.contact().addContact(addedContact, linkedGroup);
     }
     app.contact().addContact(addedContact, linkedGroup);
     ContactData contactsAfter = app.db().selectContactFromDbById(addedContact.getId()).iterator().next();

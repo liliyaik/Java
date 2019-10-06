@@ -7,6 +7,7 @@ import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.GroupData;
 import ru.qa.pft.addressbook.model.Groups;
 
+import java.security.acl.Group;
 import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -34,8 +35,9 @@ public class ContactRemoveGroupTests extends TestBase {
     ContactData deletedContact = contacts.iterator().next();
     Groups groupsOfDeletedContact = deletedContact.getGroups();
     if (deletedContact.getGroups().size() == 0) {
-      app.contact().addContact(deletedContact, groups.iterator().next());
-      groupsOfDeletedContact = deletedContact.getGroups();
+      GroupData g = groups.iterator().next();
+      app.contact().addContact(deletedContact, g);
+      groupsOfDeletedContact = groupsOfDeletedContact.withAdded(g);
     }
     GroupData linkedGroup = groupsOfDeletedContact.iterator().next();
     app.contact().removefromgroup(deletedContact, linkedGroup);

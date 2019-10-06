@@ -1,10 +1,12 @@
 package ru.qa.pft.addressbook.app;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryReturn;
 import org.openqa.selenium.WebDriver;
 import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.Contacts;
@@ -50,5 +52,20 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public int GetFreeContact(){
+    int contactId = -1;
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+
+    SQLQuery q = session.createSQLQuery("select distinct ab.id, ab.email from addressbook ab left outer join address_in_groups ag on ab.id = ag.id where ag.group_id is null;");
+    List<Object[]> r = q.list();
+    if(r.size() > 0){
+      contactId = (int)r.get(0)[0];
+    }
+    session.getTransaction().commit();
+    session.close();
+    return contactId;
   }
 }

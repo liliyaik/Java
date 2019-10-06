@@ -9,9 +9,12 @@ import ru.qa.pft.addressbook.model.Groups;
 
 import java.util.Set;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
+
 public class ContactRemoveGroupTests extends TestBase {
   @BeforeMethod
-  public void ensurePreconditions(){
+  public void ensurePreconditions() {
     app.contact().gotoHomepage();
     if (app.db().groups().size() == 0) {
       app.goTo().gotoGroupPage();
@@ -23,19 +26,22 @@ public class ContactRemoveGroupTests extends TestBase {
     }
   }
 
+
   @Test
   public void testContactRemoveGroup(){
     Groups groups = app.db().groups();
-    Contacts before = app.db().contacts();
-    ContactData removedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(removedContact.getId()).inGroup(groups.iterator().next());
-    if(contact.getGroups().size() == 0){
-      app.contact().addgroup(contact);
+    Contacts contacts = app.db().contacts();
+    ContactData deletedContact = contacts.iterator().next();
+    Groups groupsOfDeletedContact = deletedContact.getGroups();
+    if (deletedContact.getGroups().size() == 0) {
+      app.contact().addContact(deletedContact, groups.iterator().next());
+      groupsOfDeletedContact = deletedContact.getGroups();
     }
-    Set<GroupData> contactgroups = (Set<GroupData>) contact.getGroups();
-    GroupData groupToRemove = contactgroups.iterator().next();
-    GroupData group = new GroupData().withId(groupToRemove.getId());
-    app.contact().removefromgroup(contact, group);
+    GroupData linkedGroup = groupsOfDeletedContact.iterator().next();
+    app.contact().removefromgroup(deletedContact, linkedGroup);
+    ContactData contactsAfter = app.db().selectContactFromDbById(deletedContact.getId()).iterator().next();
+    Groups groupsOfDeletedContactAfter = contactsAfter.getGroups();
+    assertThat(groupsOfDeletedContact.without(linkedGroup), equalTo(groupsOfDeletedContactAfter));
   }
 }
 

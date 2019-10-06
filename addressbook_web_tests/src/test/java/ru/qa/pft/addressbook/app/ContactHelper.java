@@ -74,6 +74,16 @@ public class ContactHelper extends BaseHelper {
     SubmitCreateContact();
     gotoHomepage();
   }
+  public void addContact(ContactData contact, GroupData group) {
+    selectById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+    click(By.name("add"));
+    click(By.linkText("group page \"" + group.getName() + "\""));
+  }
+
+  public void selectById(int id)
+  { wd.findElement(By.cssSelector("input[value='" + id + "']")).click(); }
+
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -129,7 +139,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   private void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void fillContactForm(ContactData contactDate, boolean creation) {
@@ -182,10 +192,10 @@ public class ContactHelper extends BaseHelper {
   
 
   public void removefromgroup(ContactData contact, GroupData group) {
-    new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
-    selectContactById(contact.getId());
-    deleteSelectedContactFromGroup(contact, group);
-    gotoHomepage();
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
+    selectById(contact.getId());
+    click(By.name("remove"));
+    click(By.linkText("group page \"" + group.getName() + "\""));
   }
 
   private void deleteSelectedContactFromGroup(ContactData contact, GroupData group) {

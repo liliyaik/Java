@@ -12,42 +12,43 @@ dependencies{
     compile 'org.apache.httpcomponents:httpclient:4.5.10'
     compile 'com.google.code.gson:gson:2.8.5'
             }
-    task testGroups(type: Test) {
-        useTestNG{
-            suites 'src/test/resources/testng-groups.xml'
-        }
-
-        if (project.hasProperty('browser')) {
-            systemProperty 'browser', "${browser}"
-        }
-
-        if (project.hasProperty('target')) {
-            systemProperty 'target', "${target}"
-        }
-        if (project.hasProperty('verifyUi')) {
-            systemProperty 'verifyUi', "${target}"
-        }
+task testGroups(type:Test) {
+    useTestNG() {
+        suites 'src/test/resources/testng-groups.xml'
     }
-
-    task testContacts(type: Test) {
-        useTestNG{
-            suites 'src/test/resources/testng-contacts.xml'
-        }
-
-        if (project.hasProperty('browser')) {
-            systemProperty 'browser', "${browser}"
-        }
-
-        if (project.hasProperty('target')) {
-            systemProperty 'target', "${target}"
-        }
-        if (project.hasProperty('verifyUi')) {
-            systemProperty 'verifyUi', "${target}"
-        }
-
+    if(project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
     }
-
-test {
-    useTestNG()
+    if(project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if(project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+    if(project.hasProperty('verifyUi')){
+        systemProperty 'verifyUi', "${verifyUi}"
+    }
 }
+
+task testContacts(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if(project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if(project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if(project.hasProperty('target')){
+        systemProperty 'target', "${target}"
+    }
+    if(project.hasProperty('verifyUi')){
+        systemProperty 'verifyUi', "${verifyUi}"
+    }
+}
+
+//test {
+//    useTestNG()
+//}
 

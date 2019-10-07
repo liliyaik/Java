@@ -32,13 +32,22 @@ public class ContactRemoveGroupTests extends TestBase {
   public void testContactRemoveGroup(){
     Groups groups = app.db().groups();
     Contacts contacts = app.db().contacts();
-    ContactData deletedContact = contacts.iterator().next();
-    Groups groupsOfDeletedContact = deletedContact.getGroups();
-    if (deletedContact.getGroups().size() == 0) {
+    ContactData deletedContact = null;
+    Groups groupsOfDeletedContact = null;
+    for(ContactData c : contacts){
+      if(c.getGroups().size() > 0){
+        deletedContact = c;
+        groupsOfDeletedContact = deletedContact.getGroups();
+        break;
+      }
+    }
+    if(deletedContact == null){
+      deletedContact = contacts.iterator().next();
       GroupData g = groups.iterator().next();
       app.contact().addContact(deletedContact, g);
       groupsOfDeletedContact = groupsOfDeletedContact.withAdded(g);
     }
+
     GroupData linkedGroup = groupsOfDeletedContact.iterator().next();
     app.contact().removefromgroup(deletedContact, linkedGroup);
     ContactData contactsAfter = app.db().selectContactFromDbById(deletedContact.getId()).iterator().next();

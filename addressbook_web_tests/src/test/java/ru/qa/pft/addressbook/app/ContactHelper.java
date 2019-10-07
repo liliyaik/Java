@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import ru.qa.pft.addressbook.model.Contacts;
 import ru.qa.pft.addressbook.model.ContactData;
 import ru.qa.pft.addressbook.model.GroupData;
+import ru.qa.pft.addressbook.model.Groups;
 
 import java.util.Iterator;
 import java.util.List;
@@ -72,11 +73,12 @@ public class ContactHelper extends BaseHelper {
     }
   public ContactData GetFreeContact(){
     Contacts contacts = app.db().contacts();
+    Groups groups = app.db().groups();
     ContactData addedContact = null;
     Iterator<ContactData> ci = contacts.iterator();
     while(ci.hasNext()) {
       ContactData c = ci.next();
-      if(c.getGroups().size() == 0){
+      if(c.getGroups().size() < groups.size()){
         addedContact = c;
       }
     }

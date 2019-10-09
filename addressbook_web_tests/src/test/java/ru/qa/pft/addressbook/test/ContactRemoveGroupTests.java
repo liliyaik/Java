@@ -33,7 +33,7 @@ public class ContactRemoveGroupTests extends TestBase {
     Groups groups = app.db().groups();
     Contacts contacts = app.db().contacts();
     ContactData deletedContact = null;
-    Groups groupsOfDeletedContact = null;
+    Groups groupsOfDeletedContact = new Groups();
     for(ContactData c : contacts){
       if(c.getGroups().size() > 0){
         deletedContact = c;
